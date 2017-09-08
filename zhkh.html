@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link rel="icon" type="image/png" href="favicon.png" sizes="160x160">
+
+      <title>Расчет стоимости ЖКХ</title>
+      <style type="text/css">
+.auto-style1 {
+	border-left-style: solid;
+	border-left-width: 1px;
+}
+.auto-style2 {
+	border-right-style: solid;
+	border-right-width: 1px;
+}
+.auto-style4 {
+	font-size: x-large;
+}
+</style>
+    </head>
+
+<body bgcolor="#eeeeee">
+
+<h1>Расчет стоимости ЖКХ</h1>
+<table style="width: 100%">
+	<tr>
+		<td>
+		<h3>Введите показатели</h3>
+
+<table>
+    <tbody>
+        <tr>
+            <td></td>
+            <td>Старые и новые</td>
+            <td class="auto-style2"></td>
+            <td class="auto-style1"></td>
+            <td>Уже расход (приоритет выше)</td>
+        </tr>
+        <tr>
+            <td>Холодное ВС</td>
+            <td>
+                <input type="text" id="in_cold_old" size="10" maxlength="10"> &rightarrow;
+                <input type="text" id="in_cold_new" size="10" maxlength="10"></td>
+            <td class="auto-style2"></td>
+            <td class="auto-style1"></td>
+            <td><input type="text" id="in_cold_delta" size="10" maxlength="10"></td>
+        </tr>
+        <tr>
+            <td>Горячее ВС</td>
+            <td>
+                <input type="text" id="in_hot_old" size="10" maxlength="10"> &rightarrow;
+                <input type="text" id="in_hot_new" size="10" maxlength="10"></td>
+            <td colspan="2">&nbsp;&nbsp; или&nbsp;&nbsp;&nbsp; </td>
+            <td><input type="text" id="in_hot_delta" size="10" maxlength="10"></td>
+        </tr>
+        <tr>
+            <td>Электроэнергия</td>
+            <td>
+                <input type="text" id="in_electro_old" size="10" maxlength="10"> &rightarrow;
+                <input type="text" id="in_electro_new" size="10" maxlength="10"></td>
+            <td class="auto-style2"></td>
+            <td class="auto-style1"></td>
+            <td><input type="text" id="in_electro_delta" size="10" maxlength="10"></td>
+        </tr>
+    </tbody>
+</table>
+
+		</td>
+		<td>
+
+<input  type="button"
+        id="calc"
+        onclick="get_vars();calculate();output();"
+        value="Рассчитать! "
+        style="margin: 5px 0; height: 76px; width: 243px;"
+        class="auto-style4" />
+    </td>
+	</tr>
+	<tr>
+		<td width="50%">
+
+<h3>Тарифы</h3>
+
+<table>
+    <tbody>
+        <tr>
+            <td>Вода (без учета нагрева), руб/м<sup>3</sup></td>
+            <td><input type="text" id="in_t_water" size="10" maxlength="10" value="30.36"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Водоотведение, руб/м<sup>3</sup></td>
+            <td><input type="text" id="in_t_waterout" size="10" maxlength="10" value="31.65"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Нагрев воды, Гкал/м<sup>3</sup></td>
+            <td><input type="text" id="in_t_Gcalperm3" size="10" maxlength="10" value="0.0495"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Нагрев воды, руб/Гкал</td>
+            <td><input type="text" id="in_t_Gcal" size="10" maxlength="10" value="1864.99"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Электроснабжение, руб/кВт</td>
+            <td><input type="text" id="in_t_electro" size="10" maxlength="10" value="5.04"></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+		</td>
+		<td>
+            <h3>Результат</h3>
+		          <input type="text" size="10" disabled="disabled" maxlength="10" class="auto-style4 price"><span class="auto-style4"> руб.
+            </span></td>
+	</tr>
+</table>
+<h3>Расчет</h3>
+
+    <h4>Водоотведение</h4>
+
+    <p>Объем =
+        <input type="text" class="cold_delta" size="10" disabled="disabled" maxlength="10"> м<sup>3</sup> +
+        <input type="text" class="hot_delta" size="10" disabled="disabled" maxlength="10"> м<sup>3</sup> =
+        <input type="text" class="water_out" size="10" disabled="disabled" maxlength="10"> м<sup>3</sup>
+    </p>
+    <p>Стоимость =
+        <input type="text" class="water_out" size="10" disabled="disabled" maxlength="10"> м<sup>3</sup> &times;
+        <input type="text" class="t_waterout" size="10" disabled="disabled" maxlength="10"> руб/м<sup>3</sup> =
+        <input type="text" class="price_waterout" size="10" disabled="disabled" maxlength="10"> руб.
+    </p>
+
+    <h4>Холодное водоснабжение</h4>
+
+    <p>Стоимость =
+        <input type="text" class="cold_delta" size="10" disabled="disabled" maxlength="10"> м<sup>3</sup> &times;
+        <input type="text" class="t_water" size="10" disabled="disabled" maxlength="10"> руб/м<sup>3</sup> =
+        <input type="text" class="price_cold" size="10" disabled="disabled" maxlength="10"> руб.
+    </p>
+
+    <h4>Горячее водоснабжение</h4>
+
+    <p>Стоимость нагрева =
+        <input type="text" class="hot_delta" size="10" disabled="disabled" maxlength="10"> м<sup>3</sup> &times;
+        <input type="text" class="t_Gcalperm3" size="10" disabled="disabled" maxlength="10"> Гкал/м<sup>3</sup> &times;
+        <input type="text" class="t_Gcal" size="10" disabled="disabled" maxlength="10"> руб/Гкал =
+        <input type="text" class="price_hot_heat" size="10" disabled="disabled" maxlength="10"> руб.
+    </p>
+    <p>Стоимость воды =
+        <input type="text" class="hot_delta" size="10" disabled="disabled" maxlength="10"> м<sup>3</sup> &times;
+        <input type="text" class="t_water" size="10" disabled="disabled" maxlength="10"> руб/м<sup>3</sup> =
+        <input type="text" class="price_hot_water" size="10" disabled="disabled" maxlength="10"> руб.
+    </p>
+    <p>Общая стоимость =
+        <input type="text" class="price_hot_heat" size="10" disabled="disabled" maxlength="10"> +
+        <input type="text" class="price_hot_water" size="10" disabled="disabled" maxlength="10"> =
+        <input type="text" class="price_hot" size="10" disabled="disabled" maxlength="10"> руб.
+    </p>
+
+    <h4>Электроэнергия</h4>
+
+    <p>Стоимость =
+        <input type="text" class="electro_delta" size="10" disabled="disabled" maxlength="10"> кВт &times;
+        <input type="text" class="t_electro" size="10" disabled="disabled" maxlength="10"> руб/кВт =
+        <input type="text" class="price_electro" size="10" disabled="disabled" maxlength="10"> руб.
+    </p>
+
+    <h2>Итого</h2>
+
+    <p>
+        <input type="text" class="price_waterout" size="10" disabled="disabled" maxlength="10"> +
+        <input type="text" class="price_cold" size="10" disabled="disabled" maxlength="10"> +
+        <input type="text" class="price_hot" size="10" disabled="disabled" maxlength="10"> +
+        <input type="text" class="price_electro" size="10" disabled="disabled" maxlength="10"> =
+        <input type="text" class="price" size="10" disabled="disabled" maxlength="10"> руб.
+    </p>
+
+<script type="text/javascript" src="zhkh.js"></script>
+
+</body>
+</html>
