@@ -2,7 +2,8 @@
 <html>
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <link rel="icon" type="image/png" href="favicon.png" sizes="160x160">
+      <link rel="icon" type="image/png" href="favicon.png" sizes="152x152">
+      <link rel="apple-touch-icon" sizes="152x152" href="favicon.png">
 
       <title>Расчет стоимости ЖКХ</title>
       <style type="text/css">
@@ -25,57 +26,48 @@
 <h1>Расчет стоимости ЖКХ</h1>
 <table style="width: 100%">
 	<tr>
-		<td>
+		<td colspan="2">
+
 		<h3>Введите показатели</h3>
 
-<table>
-    <tbody>
-        <tr>
-            <td></td>
-            <td>Старые и новые</td>
-            <td class="auto-style2"></td>
-            <td class="auto-style1"></td>
-            <td>Уже расход (приоритет выше)</td>
-        </tr>
-        <tr>
-            <td>Холодное ВС</td>
-            <td>
-                <input type="text" id="in_cold_old" size="10" maxlength="10"> &rightarrow;
-                <input type="text" id="in_cold_new" size="10" maxlength="10"></td>
-            <td class="auto-style2"></td>
-            <td class="auto-style1"></td>
-            <td><input type="text" id="in_cold_delta" size="10" maxlength="10"></td>
-        </tr>
-        <tr>
-            <td>Горячее ВС</td>
-            <td>
-                <input type="text" id="in_hot_old" size="10" maxlength="10"> &rightarrow;
-                <input type="text" id="in_hot_new" size="10" maxlength="10"></td>
-            <td colspan="2">&nbsp;&nbsp; или&nbsp;&nbsp;&nbsp; </td>
-            <td><input type="text" id="in_hot_delta" size="10" maxlength="10"></td>
-        </tr>
-        <tr>
-            <td>Электроэнергия</td>
-            <td>
-                <input type="text" id="in_electro_old" size="10" maxlength="10"> &rightarrow;
-                <input type="text" id="in_electro_new" size="10" maxlength="10"></td>
-            <td class="auto-style2"></td>
-            <td class="auto-style1"></td>
-            <td><input type="text" id="in_electro_delta" size="10" maxlength="10"></td>
-        </tr>
-    </tbody>
-</table>
-
+            <table>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>Старые и новые</td>
+                        <td class="auto-style2"></td>
+                        <td class="auto-style1"></td>
+                        <td>Уже расход (приоритет выше)</td>
+                    </tr>
+                    <tr>
+                        <td>Холодное ВС</td>
+                        <td>
+                            <input type="text" id="in_cold_old" size="10" maxlength="10"> &rightarrow;
+                            <input type="text" id="in_cold_new" size="10" maxlength="10"></td>
+                        <td class="auto-style2"></td>
+                        <td class="auto-style1"></td>
+                        <td><input type="text" id="in_cold_delta" size="10" maxlength="10"></td>
+                    </tr>
+                    <tr>
+                        <td>Горячее ВС</td>
+                        <td>
+                            <input type="text" id="in_hot_old" size="10" maxlength="10"> &rightarrow;
+                            <input type="text" id="in_hot_new" size="10" maxlength="10"></td>
+                        <td colspan="2">&nbsp;&nbsp; или&nbsp;&nbsp;&nbsp; </td>
+                        <td><input type="text" id="in_hot_delta" size="10" maxlength="10"></td>
+                    </tr>
+                    <tr>
+                        <td>Электроэнергия</td>
+                        <td>
+                            <input type="text" id="in_electro_old" size="10" maxlength="10"> &rightarrow;
+                            <input type="text" id="in_electro_new" size="10" maxlength="10"></td>
+                        <td class="auto-style2"></td>
+                        <td class="auto-style1"></td>
+                        <td><input type="text" id="in_electro_delta" size="10" maxlength="10"></td>
+                    </tr>
+                </tbody>
+            </table>
 		</td>
-		<td>
-
-<input  type="button"
-        id="calc"
-        onclick="get_vars();calculate();output();"
-        value="Рассчитать! "
-        style="margin: 5px 0; height: 76px; width: 243px;"
-        class="auto-style4" />
-    </td>
 	</tr>
 	<tr>
 		<td width="50%">
@@ -119,6 +111,15 @@
             </span></td>
 	</tr>
 </table>
+<br/>
+
+<input  type="button"
+        id="calc"
+        onclick="get_vars();calculate();output();"
+        value="Рассчитать! "
+        style="margin: 5px 0; height: 76px; width: 243px;"
+        class="auto-style4" />
+
 <h3>Расчет</h3>
 
     <h4>Водоотведение</h4>
